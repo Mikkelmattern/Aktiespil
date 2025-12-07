@@ -1,51 +1,80 @@
 # Aktiespil
-Mit SP4 projek
-/*
-Bruger & login
 
-Brugeren skal kunne oprette sig med brugernavn og password, som gemmes i en fil.
+## Funktionelle Krav – Aktiespil (SP4 Projekt)
+/*
+### 1. Brugerhåndtering
+
+Brugeren skal kunne oprette en konto med brugernavn og password.
+
+Brugernavn og password skal gemmes i en fil.
 
 Brugeren skal kunne logge ind med eksisterende konto.
 
-Hver bruger har sin egen portefølje og økonomi.
+Hver bruger skal have sin egen gemte spiltilstand (økonomi, portefølje osv.).
 
-Spiløkonomi & aktier
+### 2. Spiløkonomi og Aktier
 
-Brugeren starter med et fast startbeløb (fx 100.000).
+Brugeren starter med et fast startbeløb (f.eks. 100.000).
 
-Der findes en liste af aktier med navn, type og startpris.
+Spillet indeholder en liste af aktier med:
 
-Aktier har en type/kategori, der påvirker prisudvikling.
+Navn
 
-Handel
+Type/kategori
 
-Brugeren skal kunne se en oversigt over alle tilgængelige aktier og deres nuværende pris.
+Startpris
 
-Brugeren skal kunne købe aktier, hvis de har nok penge.
+Aktiernes type skal påvirke den måde, deres pris ændrer sig på.
 
-Brugeren skal kunne sælge aktier, de ejer, og få korrekt beløb udbetalt.
+### 3. Handelssystem
 
-Porteføljen skal opdateres korrekt ved køb og salg.
+Brugeren skal kunne:
 
-Portefølje & historik
+Se en liste over alle aktier med deres nuværende pris.
 
-Brugeren skal kunne se sin portefølje: aktienavn, antal, købspris, nuværende pris og værdi.
+Købe aktier, hvis de har penge nok.
+
+Sælge aktier, de ejer, og modtage korrekt beløb.
+
+Systemet skal opdatere porteføljen korrekt efter køb og salg.
+
+### 4. Portefølje og Historik
+
+Brugeren skal kunne se sin portefølje, som indeholder:
+
+Aktie­navn
+
+Antal aktier
+
+Gennemsnitlig købspris
+
+Nuværende pris
+
+Samlet værdi
 
 Brugeren skal kunne se en liste over tidligere handler (dato, aktie, antal, pris, køb/salg).
 
-Der skal kunne vises en rapport over samlet gevinst/tab.
+Programmet skal kunne vise en rapport over gevinst/tab:
 
-Tid & prisudvikling
+Realiseret gevinst/tab
 
-Brugeren skal kunne lade tiden gå én dag frem ad gangen.
+Urealiseret gevinst/tab
 
-Hver dag opdateres aktiepriserne efter en simpel model.
+### 5. Tid og Prisudvikling
 
-Efter hver dag vises en “nyhedsrapport”, der beskriver de største stigninger/fald.
+Brugeren skal kunne lade tiden gå én dag frem.
 
-Nyhedsrapporten skal inkludere hints om hvilke typer aktier, der måske vil klare sig godt/dårligt.
+Aktiepriserne skal opdateres efter en model, hvor typen påvirker sandsynlighed for stigning/fald.
 
-Gem & load
+Efter hver dag vises en nyhedsrapport med:
+
+De største stigninger
+
+De største fald
+
+Hints om hvilke aktietyper der muligvis klarer sig godt eller dårligt i næste periode.
+
+### 6. Gem og Indlæs Spil
 
 Når brugeren logger ud, gemmes:
 
@@ -53,7 +82,21 @@ Pengebeholdning
 
 Portefølje
 
-Evt. dagnummer og handlerhistorik
+Dagnummer
 
-Ved login indlæses brugerens seneste spilstand.
+Handlerhistorik (valgfrit, men anbefalet)
+
+Når brugeren logger ind igen, indlæses den gemte spiltilstand.
+
+### 7. Fejlhåndtering
+
+Programmet må ikke crashe ved ugyldigt input.
+
+Brugeren skal få besked, hvis:
+
+De prøver at købe aktier uden nok penge.
+
+De prøver at sælge flere aktier end de ejer.
+
+De vælger en aktie, der ikke findes.
 */
