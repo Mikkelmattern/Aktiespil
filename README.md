@@ -30,13 +30,13 @@ Aktiernes type skal påvirke den måde, deres pris ændrer sig på.
 
 Brugeren skal kunne:
 
-Se en liste over alle aktier med deres nuværende pris.
+> Se en liste over alle aktier med deres nuværende pris.
 
-Købe aktier, hvis de har penge nok.
+> Købe aktier, hvis de har penge nok.
 
-Sælge aktier, de ejer, og modtage korrekt beløb.
+> Sælge aktier, de ejer, og modtage korrekt beløb.
 
-Systemet skal opdatere porteføljen korrekt efter køb og salg.
+> Systemet skal opdatere porteføljen korrekt efter køb og salg.
 
 ### 4. Portefølje og Historik
 
