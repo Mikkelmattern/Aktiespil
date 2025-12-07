@@ -18,11 +18,11 @@ Brugeren starter med et fast startbeløb (f.eks. 100.000).
 
 Spillet indeholder en liste af aktier med:
 
-Navn
+> Navn
 
-Type/kategori
+> Type/kategori
 
-Startpris
+> Startpris
 
 Aktiernes type skal påvirke den måde, deres pris ændrer sig på.
 
@@ -42,15 +42,15 @@ Systemet skal opdatere porteføljen korrekt efter køb og salg.
 
 Brugeren skal kunne se sin portefølje, som indeholder:
 
-Aktie­navn
+> Aktie­navn
 
-Antal aktier
+> Antal aktier
 
-Gennemsnitlig købspris
+> Gennemsnitlig købspris
 
-Nuværende pris
+> Nuværende pris
 
-Samlet værdi
+> Samlet værdi
 
 Brugeren skal kunne se en liste over tidligere handler (dato, aktie, antal, pris, køb/salg).
 
@@ -68,23 +68,21 @@ Aktiepriserne skal opdateres efter en model, hvor typen påvirker sandsynlighed 
 
 Efter hver dag vises en nyhedsrapport med:
 
-De største stigninger
+> De største stigninger
 
-De største fald
+> De største fald
 
-Hints om hvilke aktietyper der muligvis klarer sig godt eller dårligt i næste periode.
+> Hints om hvilke aktietyper der muligvis klarer sig godt eller dårligt i næste periode.
 
 ### 6. Gem og Indlæs Spil
 
 Når brugeren logger ud, gemmes:
 
-Pengebeholdning
+> Pengebeholdning
 
-Portefølje
+> Portefølje
 
-Dagnummer
-
-Handlerhistorik (valgfrit, men anbefalet)
+> Dagnummer
 
 Når brugeren logger ind igen, indlæses den gemte spiltilstand.
 
@@ -94,8 +92,8 @@ Programmet må ikke crashe ved ugyldigt input.
 
 Brugeren skal få besked, hvis:
 
-De prøver at købe aktier uden nok penge.
+> De prøver at købe aktier uden nok penge.
 
-De prøver at sælge flere aktier end de ejer.
+> De prøver at sælge flere aktier end de ejer.
 
-De vælger en aktie, der ikke findes.
+> De vælger en aktie, der ikke findes.
