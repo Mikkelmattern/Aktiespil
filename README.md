@@ -1,7 +1,7 @@
 # Aktiespil
 
 ## Funktionelle Krav – Aktiespil (SP4 Projekt)
-/*
+
 ### 1. Brugerhåndtering
 
 Brugeren skal kunne oprette en konto med brugernavn og password.
@@ -99,4 +99,3 @@ De prøver at købe aktier uden nok penge.
 De prøver at sælge flere aktier end de ejer.
 
 De vælger en aktie, der ikke findes.
-*/
