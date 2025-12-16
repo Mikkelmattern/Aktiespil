@@ -38,7 +38,7 @@ public class GameState {
             case 3 -> {
                 return false;
             }
-            default -> System.out.println("Ugyldigt valg");
+            default -> textUI.displayMsg("Ugyldigt valg");
         }
 
         return false;
@@ -77,6 +77,7 @@ public class GameState {
            user = new User(fh, usernameInput, passwordInput);
             user.createUserFiles();
             user.initializeBalance();
+            user.initializePortfolio();
             return true;
         }
         textUI.displayMsg("Brugernavn eller password forkert!");

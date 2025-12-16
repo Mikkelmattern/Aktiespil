@@ -4,6 +4,7 @@ import util.FileHandler;
 import util.TextUI;
 
 import java.nio.file.Path;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class User {
@@ -14,6 +15,8 @@ public class User {
     private Trade trades;
     private Path balanceFilePath;
     private Path portfolioFilePath;
+
+    DecimalFormat df = new DecimalFormat("#.##");
 
     /**
      * Filhåndteringsobjekt der anvendes til at gemme og læse filer.
@@ -107,7 +110,7 @@ public class User {
     }
 
     public double getBalance() {
-        return balance;
+        return Double.parseDouble(df.format(balance));
     }
 
     public void addOrRemoveBalance(double amount) {
@@ -131,7 +134,21 @@ public class User {
         saveBalance();
     }
     private void savePortfolio() {
+        for(StockHolding holding : portfolio.getHoldings()) {
+            fh.stringFileWriter(portfolioFilePath, holding.getStock().getName()+";"+holding.getStock().getType()+";"+holding.getStock().getPrice()+";"+holding.getAmount());
+        }
+    }
+    public void initializePortfolio() {
+        List<String> portfolioFil = fh.returnFile(Path.of("data", "userdata", username, "portfolio.txt"));
+        for (String s : portfolioFil) {
+            String[] split = s.split(";");
+            String stockname = split[0];
+            StockType stockType = StockType.valueOf(split[1]);
+            double price = Double.parseDouble(split[2]);
+            int amount = Integer.parseInt(split[3]);
+            portfolio.addHolding(new Stock (stockname, stockType, price), amount, price);
 
+        }
     }
     private void saveBalance() {
         fh.stringFileWriter(balanceFilePath, String.valueOf(getBalance()));
