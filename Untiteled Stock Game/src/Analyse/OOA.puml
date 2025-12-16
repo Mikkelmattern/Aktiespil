@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class User {
+    - username : String
+    - password : String
+    - balance : double
+    - portfolio : Portfolio
+    - tradeHistory : List<Trade>
+    + buyStock()
+    + sellStock()
+    + getUsername()
+}
+
+class Portfolio {
+    - holdings : List<StockHolding>
+    + addHolding()
+    + getTotalValue()
+}
+
+class StockHolding {
+    - stock : Stock
+    - amount : int
+    - averageBuyPrice : double
+    + getCurrentValue()
+    + addAmount()
+    + removeAmount()
+}
+
+class Stock {
+    - name : String
+    - type : String
+    - currentPrice : double
+    + getName()
+    + getType()
+    + getPrice()
+    + setPrice()
+}
+
+class Market {
+    - stocks : List<Stock>
+    - currentDay : int
+    + addStock()
+    + getStocks()
+    + nextDay()
+    - updatePrices()
+}
+
+class Trade {
+    - date : String
+    - stock : Stock
+    - amount : int
+    - pricePerStock : double
+    - type : TradeType
+}
+
+enum TradeType {
+    BUY
+    SELL
+}
+
+User --> Portfolio : Owns
+Portfolio --> StockHolding : Contains *
+StockHolding --> Stock : References 1
+Market --> Stock : Owns *
+User --> Trade : "Has history"
+Market --> Trade : "Used for reporting"
+
+NewsReport : generate()
+@enduml

@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class User {
+    - username : String
+    - password : String
+    - balance : double
+    - portfolio : Portfolio
+    - tradeHistory : List<Trade>
+    + buyStock(stock : Stock, amount : int) : boolean
+    + sellStock(stock : Stock, amount : int) : boolean
+    + confirmTrade() : void
+    + getUsername() String
+}
+
+class Portfolio {
+    - holdings : List<StockHolding>
+    + addHolding(stock : Stock, amount : int) : void
+    + removeHolding(stock : Stock, amount : int) : void
+    + getTotalValue() : double
+}
+
+class StockHolding {
+    - stock : Stock
+    - amount : int
+    - averageBuyPrice : double
+    + getCurrentPrice() : double
+    + addAmount(amount : int) : void
+    + removeAmount(amount : int) : void
+    + calculateProfit() : double
+}
+
+class Stock {
+    - name : String
+    - type : StockType
+    - currentPrice : double
+    + getName() : String
+    + getType() : StockType
+    + getPrice() : double
+    + setPrice() : void
+}
+
+class Market {
+    - stocks : List<Stock>
+    - currentDay : int
+    + addStock(stock : Stock) : void
+    + getStocks() : List<Stock>
+    + nextDay() : void
+    - updatePrices() : void
+}
+
+class Trade {
+    - date : String
+    - stock : Stock
+    - amount : int
+    - pricePerStock : double
+    - type : TradeType
+    + getType() : TradeType
+    + getPricePerStock() : double
+    + getTotaltValue() : double
+}
+class NewsReport {
++ generateReport(stocks : List<Stock>) : String)
++ generateHint(stocks : List<Stock>) : String)
+}
+class GameState{}
+enum TradeType {
+    BUY
+    SELL
+}
+enum StockType {
+TECH
+MEDIC
+ENERGY
+FIN
+FOOD
+CRYPTO
+}
+User "1" --> "1" Portfolio
+Portfolio "1" --> "*" StockHolding
+Market "1" --> "1..*" Stock
+User "1" --> "*" Trade
+Market --> NewsReport : Uses
+Stock --> StockHolding : References
+
+@enduml
