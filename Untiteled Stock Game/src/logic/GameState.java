@@ -74,8 +74,8 @@ public class GameState {
 
         if (User.authenticateUser(usernameInput, passwordInput, fh)) {
             textUI.displayMsg("Login successful!");
-            user = createUserAndPortfolio(fh, usernameInput, passwordInput);
-            user.createUserFiles(usernameInput);
+           user = new User(fh, usernameInput, passwordInput);
+            user.createUserFiles();
             user.initializeBalance();
             return true;
         }
@@ -162,14 +162,12 @@ public class GameState {
 
     }
 
-    public void addToBalance(int amount) {
-        user.addOrRemoveBalance(amount);
-    }
-
     private void nextDay() {
         algorithm.doNextDay(market);
     }
 
     private void logout() {
+       user.saveUser();
+       System.exit(0);
     }
 }

@@ -47,7 +47,7 @@ public class FileHandler {
      * @param writeInput En eller flere tekstlinjer, der skal skrives
      * @return {@code true} hvis der blev skrevet uden fejl, ellers {@code false}
      */
-    public boolean stringFileWriter(Path filePath, String... writeInput) {
+    public boolean stringFileWriterAppend(Path filePath, String... writeInput) {
 
         try {
             writer = new FileWriter(filePath.toFile(), true);
@@ -60,6 +60,29 @@ public class FileHandler {
             return false;
         }
     }
+    /**
+     * Skriver én eller flere linjer tekst til en fil.
+     * Hvis filen ikke findes, antages det at den allerede er oprettet.
+     * Hver linje afsluttes med systemets line separator.
+     *
+     * @param filePath   Stien til filen
+     * @param writeInput En eller flere tekstlinjer, der skal skrives
+     * @return {@code true} hvis der blev skrevet uden fejl, ellers {@code false}
+     */
+    public boolean stringFileWriter(Path filePath, String... writeInput) {
+
+        try {
+            writer = new FileWriter(filePath.toFile(), false);
+            for (String s : writeInput) {
+                writer.write(s + System.lineSeparator());
+            }
+            writer.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     /**
      * Sørger for at mappen og filen eksisterer.
      * Hvis mappen ikke findes, bliver den oprettet.
@@ -88,8 +111,8 @@ public class FileHandler {
      */
     public List<String> returnFile(Path filePath) {
         try {
-            if (true == Files.notExists(filePath)) {
-                return new ArrayList<>();
+            if (Files.notExists(filePath)) {
+                return new  ArrayList<>();
             } else {
                 return Files.readAllLines(filePath);
             }
@@ -113,7 +136,7 @@ public class FileHandler {
         try {
             //Hvis de ikke eksisterer retunerer den false og skriver fejlmeddelselse
             if (!Files.exists(filePath)) {
-                ui.displayMsg(filePath.toString() + " eksisterer ikke");
+                ui.displayMsg(filePath + " eksisterer ikke");
                 ui.displayMsg("Fejl i checkFile(Slet dette)");
                 return false;
             }

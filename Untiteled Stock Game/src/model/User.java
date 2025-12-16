@@ -10,8 +10,10 @@ public class User {
     private final String username;
     private String password;
     private double balance;
-    private Portfolio portfolio;
+    private final Portfolio portfolio;
     private Trade trades;
+    private Path balanceFilePath;
+    private Path portfolioFilePath;
 
     /**
      * Filhåndteringsobjekt der anvendes til at gemme og læse filer.
@@ -55,11 +57,9 @@ public class User {
         return fh.checkMatchFile(filePath, 0, username, 1, password, 2);
     }
 
-    public void createUserFiles(String nameOfUser) {
-
-        Path balanceFilePath = Path.of("data", "userdata", nameOfUser, "balance.txt");
-        Path portfolioFilePath = Path.of("data", "userdata", nameOfUser, "portfolio");
-        ;
+    public void createUserFiles() {
+        balanceFilePath = Path.of("data", "userdata", getUsername(), "balance.txt");
+        portfolioFilePath = Path.of("data", "userdata", getUsername(), "portfolio.txt");
         fh.createFileAndPath(balanceFilePath);
         fh.createFileAndPath(portfolioFilePath);
     }
@@ -80,7 +80,7 @@ public class User {
         Path filePath = fh.getFile("data/", "users.txt");
 
         String usernameAndPassword = username + ";" + password;
-        if (!fh.stringFileWriter(filePath, usernameAndPassword)) {
+        if (!fh.stringFileWriterAppend(filePath, usernameAndPassword)) {
             ui.displayMsg("Noget gik galt ved oprettelse af bruger");
             return false;
         }
@@ -120,8 +120,20 @@ public class User {
     public void initializeBalance() {
 
        List<String> balanceList = fh.returnFile(Path.of("data", "userdata", username, "balance.txt"));
+       if (balanceList.isEmpty()) {
+           balanceList.add("2000");
+       }
        balance = Double.parseDouble(balanceList.getFirst());
 
     }
+    public void saveUser() {
+        savePortfolio();
+        saveBalance();
+    }
+    private void savePortfolio() {
 
+    }
+    private void saveBalance() {
+        fh.stringFileWriter(balanceFilePath, String.valueOf(getBalance()));
+    }
 }
